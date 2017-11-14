@@ -23,10 +23,12 @@ import co.simplon.PoleEmploi.patrimoine.modele.Monument;
 @RequestScoped
 public class MonumentResource {
 
-	private static int DEFAULT_PAGE_SIZE = 10;
+	protected static int DEFAULT_PAGE_SIZE = 10;
 
 	@Inject
 	private MonumentDao monumentDao;
+
+	public void setMonumentDao(MonumentDao monumentDao) { this.monumentDao = monumentDao; }
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -64,6 +66,7 @@ public class MonumentResource {
 	@DELETE
 	@Path("{id}")
 	public void deleteMonumentById(@PathParam("id") Long id) {
+		if (id == null) throw new IllegalArgumentException();
 		monumentDao.deleteMonumentById(id);
 	}
 }
