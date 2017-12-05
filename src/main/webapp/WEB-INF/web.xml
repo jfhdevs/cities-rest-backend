@@ -2,6 +2,26 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
+	
+<!-- ========================================================================================== -->
+<!-- This filter is an implementation of W3C's CORS (Cross-Origin Resource Sharing) specification, 
+	which is a mechanism that enables cross-origin requests.
+
+     The filter works by adding required Access-Control-* headers to HttpServletResponse object. 
+	The filter also protects against HTTP response splitting. If request is invalid, or is not 
+	permitted, then request is rejected with HTTP status code 403 (Forbidden). A flowchart 
+	that demonstrates request processing by this filter is available. 
+-->
+<filter>
+  <filter-name>CorsFilter</filter-name>
+  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>CorsFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+<!-- ========================================================================================== -->
+	
 	<display-name>Cities REST Backend</display-name>
 
 	<listener>

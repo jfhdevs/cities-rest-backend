@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import co.simplon.PoleEmploi.patrimoine.endpoint.MonumentResource;
 import co.simplon.PoleEmploi.patrimoine.modele.Monument;
@@ -14,9 +15,10 @@ public class MonumentResourceTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void deleteMonumentById_should_throw_IllegalArgumentException_when_id_is_null() {
+		
 		// GIVEN
 		Long id = null;
-		MonumentResource resource = new MonumentResource();
+		MonumentResource resource = Mockito.mock(MonumentResource.class);
 		
 		// WHEN
 		resource.deleteMonumentById(id);
